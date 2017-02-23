@@ -5,8 +5,8 @@ describe GamePiece do
 
     context "color should be black or red" do
       it "is black" do
-        piece = GamePiece.new("black")
-        expect(piece.color).to eql("black")
+        piece = GamePiece.new("yellow")
+        expect(piece.color).to eql("yellow")
       end
 
       it "is red" do

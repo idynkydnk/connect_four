@@ -257,9 +257,32 @@ describe Board do
     
       expect(board.winner?(black_object)).to be(true) 
     end
-
-
-
-   
   end
+
+  describe ".print_board" do
+    it "prints a blank board" do
+      board = Board.new
+      expect { board.print_board }.to output("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n").to_stdout
+    end
+
+    it "prints board with one red piece in the first column" do
+      board = Board.new
+      red_object = double("red_object", :color => "red")
+      board.place_piece(1, red_object)
+      expect { board.print_board }.to output("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n|\e[31m#{"\u25cf"}\e[0m| | | | | | |\n").to_stdout
+
+    end
+ 
+    it "prints board with one red first, 2 blue in third, red and blue in fifth" do
+      board = Board.new
+      red_object = double("red_object", :color => "red")
+      blue_object = double("blue_object", :color => "blue")
+      board.place_piece(1, red_object)
+      2.times { board.place_piece(3, blue_object) }
+      board.place_piece(5, red_object)
+      board.place_piece(5, blue_object)
+      expect { board.print_board }.to output("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | |\e[34m#{"\u25cf"}\e[0m| |\e[34m#{"\u25cf"}\e[0m| | |\n|\e[31m#{"\u25cf"}\e[0m| |\e[34m#{"\u25cf"}\e[0m| |\e[31m#{"\u25cf"}\e[0m| | |\n").to_stdout
+    end
+
+ end
 end
