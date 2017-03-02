@@ -71,7 +71,7 @@ describe Board do
   describe ".winner?" do
     it "returns true with four in a row vertically in first column" do
       board = Board.new
-      object = double("object", :color => "black")
+      object = double("object", :color => "blue")
       4.times do
         board.place_piece(1, object)
       end
@@ -80,9 +80,9 @@ describe Board do
 
     it "returns true with four in a row vertically and up a row" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
-      board.place_piece(1, black_object)
+      board.place_piece(1, blue_object)
       4.times do
         board.place_piece(1, red_object)
       end
@@ -91,65 +91,65 @@ describe Board do
     
     it "returns true with four in a row vertically a few columns over" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       board.place_piece(4, red_object)
       board.place_piece(4, red_object)
       4.times do
-        board.place_piece(4, black_object)
+        board.place_piece(4, blue_object)
       end
-      expect(board.winner?(black_object)).to be(true) 
+      expect(board.winner?(blue_object)).to be(true) 
     end
 
     it "returns true with four in a row vertically top right corner" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       board.place_piece(7, red_object)
       board.place_piece(7, red_object)
       4.times do
-        board.place_piece(7, black_object)
+        board.place_piece(7, blue_object)
       end
-      expect(board.winner?(black_object)).to be(true) 
+      expect(board.winner?(blue_object)).to be(true) 
     end
 
     it "returns false with no pieces on the board" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
-      expect(board.winner?(black_object)).to be(false) 
+      blue_object = double("blue_object", :color => "blue")
+      expect(board.winner?(blue_object)).to be(false) 
     end
 
     it "returns false if the other color has four in a row" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       board.place_piece(6, red_object)
       board.place_piece(6, red_object)
       4.times do
-        board.place_piece(6, black_object)
+        board.place_piece(6, blue_object)
       end
       expect(board.winner?(red_object)).to be(false) 
     end
 
     it "returns true if four in a row horizontally" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
-      board.place_piece(1, black_object)
-      board.place_piece(2, black_object)
-      board.place_piece(3, black_object)
-      board.place_piece(4, black_object)
-      expect(board.winner?(black_object)).to be(true) 
+      blue_object = double("blue_object", :color => "blue")
+      board.place_piece(1, blue_object)
+      board.place_piece(2, blue_object)
+      board.place_piece(3, blue_object)
+      board.place_piece(4, blue_object)
+      expect(board.winner?(blue_object)).to be(true) 
     end
 
     it "returns true if four in a row horizontally and up a few rows" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       3.times do
-        board.place_piece(1, black_object)
-        board.place_piece(2, black_object)
-        board.place_piece(3, black_object)
-        board.place_piece(4, black_object)
+        board.place_piece(1, blue_object)
+        board.place_piece(2, blue_object)
+        board.place_piece(3, blue_object)
+        board.place_piece(4, blue_object)
       end
       board.place_piece(1, red_object)
       board.place_piece(2, red_object)
@@ -161,13 +161,13 @@ describe Board do
 
     it "returns true if four in a row horizontally and up and over a little" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       1.times do
-        board.place_piece(3, black_object)
-        board.place_piece(4, black_object)
-        board.place_piece(5, black_object)
-        board.place_piece(6, black_object)
+        board.place_piece(3, blue_object)
+        board.place_piece(4, blue_object)
+        board.place_piece(5, blue_object)
+        board.place_piece(6, blue_object)
       end
       board.place_piece(3, red_object)
       board.place_piece(4, red_object)
@@ -179,13 +179,13 @@ describe Board do
 
     it "returns true if four in a row horizontally and up and over a lot" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       5.times do
-        board.place_piece(4, black_object)
-        board.place_piece(5, black_object)
-        board.place_piece(6, black_object)
-        board.place_piece(7, black_object)
+        board.place_piece(4, blue_object)
+        board.place_piece(5, blue_object)
+        board.place_piece(6, blue_object)
+        board.place_piece(7, blue_object)
       end
       board.place_piece(4, red_object)
       board.place_piece(5, red_object)
@@ -197,65 +197,65 @@ describe Board do
 
     it "returns true if four in a row diagonally up" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       board.place_piece(2, red_object)
       2.times { board.place_piece(3, red_object) }
       3.times { board.place_piece(4, red_object) }
-      board.place_piece(1, black_object)
-      board.place_piece(2, black_object)
-      board.place_piece(3, black_object)
-      board.place_piece(4, black_object)
+      board.place_piece(1, blue_object)
+      board.place_piece(2, blue_object)
+      board.place_piece(3, blue_object)
+      board.place_piece(4, blue_object)
     
-      expect(board.winner?(black_object)).to be(true) 
+      expect(board.winner?(blue_object)).to be(true) 
     end
 
     it "returns true if four in a row diagonally up and over a little" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       2.times { board.place_piece(4, red_object) }
       3.times { board.place_piece(5, red_object) }
       4.times { board.place_piece(6, red_object) }
       5.times { board.place_piece(7, red_object) }
-      board.place_piece(4, black_object)
-      board.place_piece(5, black_object)
-      board.place_piece(6, black_object)
-      board.place_piece(7, black_object)
+      board.place_piece(4, blue_object)
+      board.place_piece(5, blue_object)
+      board.place_piece(6, blue_object)
+      board.place_piece(7, blue_object)
     
-      expect(board.winner?(black_object)).to be(true) 
+      expect(board.winner?(blue_object)).to be(true) 
     end
 
     it "returns true if four in a row diagonally down" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       5.times { board.place_piece(1, red_object) }
       4.times { board.place_piece(2, red_object) }
       3.times { board.place_piece(3, red_object) }
       2.times { board.place_piece(4, red_object) }
-      board.place_piece(1, black_object)
-      board.place_piece(2, black_object)
-      board.place_piece(3, black_object)
-      board.place_piece(4, black_object)
+      board.place_piece(1, blue_object)
+      board.place_piece(2, blue_object)
+      board.place_piece(3, blue_object)
+      board.place_piece(4, blue_object)
     
-      expect(board.winner?(black_object)).to be(true) 
+      expect(board.winner?(blue_object)).to be(true) 
     end
 
     it "returns true if four in a row diagonally down and over a little" do
       board = Board.new
-      black_object = double("black_object", :color => "black")
+      blue_object = double("blue_object", :color => "blue")
       red_object = double("red_object", :color => "red")
       5.times { board.place_piece(4, red_object) }
       4.times { board.place_piece(5, red_object) }
       3.times { board.place_piece(6, red_object) }
       2.times { board.place_piece(7, red_object) }
-      board.place_piece(4, black_object)
-      board.place_piece(5, black_object)
-      board.place_piece(6, black_object)
-      board.place_piece(7, black_object)
+      board.place_piece(4, blue_object)
+      board.place_piece(5, blue_object)
+      board.place_piece(6, blue_object)
+      board.place_piece(7, blue_object)
     
-      expect(board.winner?(black_object)).to be(true) 
+      expect(board.winner?(blue_object)).to be(true) 
     end
   end
 

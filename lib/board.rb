@@ -1,5 +1,5 @@
 class Board 
-  attr_reader :grid
+  attr_accessor :grid
 
   def initialize
     @grid = Array.new(7) { Array.new(6) { nil }}
@@ -12,7 +12,7 @@ class Board
         if @grid[col][row] && @grid[col][row].color == "red"
           print "\e[31m#{"\u25cf"}\e[0m" # red circle
         elsif @grid[col][row] && @grid[col][row].color == "blue"
-          print "\e[34m#{"\u25cf"}\e[0m" # red circle
+          print "\e[34m#{"\u25cf"}\e[0m" # blue circle
         else print " "
         end
       end
