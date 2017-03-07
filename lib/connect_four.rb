@@ -12,28 +12,48 @@ class ConnectFour
   end
 
   def play
+    clear_screen
     get_players
     pick_colors
     colors_message
     loop do
+      clear_screen
+      if @board.full_board?
+        @board.print_board
+        draw_message
+        break
+      end
+      @board.print_board
       turn_message
-    get_move
-    @board.print_board
-    if @board.winner?(@current_player) 
-      winner_message 
-      break
-    end
-    switch_players
+      get_move
+      if @board.winner?(@current_player) 
+        clear_screen
+        @board.print_board
+        winner_message 
+        break
+      end
+      switch_players
     end
 
+  end
+
+  def draw_message
+    puts "It's a draw!"
+    puts
+  end
+
+  def clear_screen
+    system("clear")
   end
 
   def winner_message
     puts "#{@current_player.name} is the winner!"
+    puts
   end
   
   def turn_message
     puts "#{@current_player.name}: It's your turn"
+    puts
   end
   
 
@@ -44,13 +64,16 @@ class ConnectFour
     if check_move(move)
       make_move(move)
     end
+    puts
   end
 
   def check_move(move)
     if move >= 1 && move <= 7 
       return true
     else 
-      raise "That is not a column"
+      puts "You can't do that!"
+      puts
+      get_move
     end
   end
 
@@ -67,16 +90,19 @@ class ConnectFour
     @player_one.name = gets.chomp
     print "Enter second players name: "
     @player_two.name = gets.chomp
+    puts
   end
   
   def pick_colors
     @player_one.color = ["red", "blue"].sample
     @player_one.color == "red" ? @player_two.color = "blue" : @player_two.color = "red"
+    puts
   end
 
   def colors_message
     puts "#{@player_one.name}'s color is #{@player_one.color}"
     puts "#{@player_two.name}'s color is #{@player_two.color}"
+    puts
   end
 end
 

@@ -21,14 +21,48 @@ class Board
   end
 
   def place_piece(col, piece)
+    col = check_col(col)
     @grid[col-1].each_with_index do |row, index|
       if row == nil
         @grid[col-1][index] = piece 
         break
       elsif index == 5
-        raise "This column is already full"
+        begin
+          raise "This column is already full"
+        rescue
+          puts "Column is full, enter another column"
+          col = gets.chomp
+          col = col.to_i
+          place_piece(col, piece)
+        end
       end
     end
+  end
+
+  def full_board?
+    (0..(@grid.length - 1)).each do |col|
+      (0..(@grid[0].length - 1)).each do |row|
+        if @grid[col][row] == nil
+          return false
+        end
+      end
+    end
+    return true
+  end
+
+  def check_col(col)
+    if col >= 1 && col <= 7 
+      return col
+    else 
+      enter_column
+    end
+  end
+
+  def enter_column
+    puts "Enter a new column: "
+    col = gets.chomp
+    col = col.to_i
+    return check_col(col)
   end
 
   def winner?(piece)

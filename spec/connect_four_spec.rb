@@ -42,33 +42,25 @@ describe ConnectFour do
 
     describe ".color_message" do
       it "lets the players know their color" do
-        expect { game.colors_message }.to output("Kyle's color is red\nLisa's color is blue\n").to_stdout
-      end
-    end
-
-    describe ".check_move" do
-      it "should give an error if input is not between 1 and 7" do
-        expect { game.check_move(8) }.to raise_error(RuntimeError)
+        expect { game.colors_message }.to output("Kyle's color is red\nLisa's color is blue\n\n").to_stdout
       end
     end
   end
 
   context "working with board instance" do
-    game = ConnectFour.new
-    game.player_one.name = "Kyle"
-    game.player_two.name = "Lisa"
-    game.current_player.color = "red"
-
     describe ".make_move" do
+      game = ConnectFour.new
+      game.player_one.name = "Kyle"
+      game.player_two.name = "Lisa"
+      game.current_player.color = "red"
+      game.make_move(1)
+
       it "should be able to place piece from move" do
-        game.make_move(1)
         expect(game.board.grid[0][0]).to eql(game.current_player)
       end
 
       it "should be able to print the board with new piece" do
-        game.make_move(1)
         expect { game.board.print_board }.to output("| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n| | | | | | | |\n|\e[31m#{"\u25cf"}\e[0m| | | | | | |\n").to_stdout
-
       end
     end
   end

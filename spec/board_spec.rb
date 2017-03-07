@@ -57,15 +57,7 @@ describe Board do
       expect(board.grid[6][0]).to eql(object)
     end
 
-    it "raises an error if column is full" do
-      board = Board.new
-      object = double("object")
-      6.times do
-        board.place_piece(1, object)
-      end
-      expect{ board.place_piece(1, object) }.to raise_error(RuntimeError)
-    end
-  end
+ end
 
 
   describe ".winner?" do
@@ -285,4 +277,25 @@ describe Board do
     end
 
  end
+
+  describe ".full_board?" do
+    it "returns false if board is not full" do
+      board = Board.new
+      expect(board.full_board?).to be(false)
+    end
+
+    it "returns true if board is full" do
+      board = Board.new
+      red_object = double("red_object", :color => "red")
+      6.times { board.place_piece(1, red_object) } 
+      6.times { board.place_piece(2, red_object) }
+      6.times { board.place_piece(3, red_object) }
+      6.times { board.place_piece(4, red_object) }
+      6.times { board.place_piece(5, red_object) }
+      6.times { board.place_piece(6, red_object) }
+      6.times { board.place_piece(7, red_object) }
+      expect(board.full_board?).to be(true)
+    end
+  end
+
 end
