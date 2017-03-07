@@ -1,1 +1,3 @@
-# connect_four
+TDD Connect Four
+
+A console connect four game. Just run main.rb
